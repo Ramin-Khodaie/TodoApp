@@ -47,7 +47,7 @@ async function getData<
 async function postData<Model, Result>(
 	url: string,
 	data: Model,
-	headers: AxiosRequestHeaders
+	headers?: AxiosRequestHeaders
 ) {
 	const options: AxiosRequestConfig = {
 		headers,

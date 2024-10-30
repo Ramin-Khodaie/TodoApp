@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import React, { FC } from 'react'
 import { TextboxProps } from './input.type'
 import { tv } from 'tailwind-variants'
 
@@ -28,20 +28,26 @@ const inputVariants = tv({
 	}
 })
 
-const Input: FC<TextboxProps> = ({
-	variant = 'primary',
-	type = 'text',
-	className,
-	size = 'normal',
-	...rest
-}) => {
-	return (
-		<input
-			type={type}
-			className={inputVariants({ variant, size, className })}
-			{...rest}
-		/>
-	)
-}
+const Input: FC<TextboxProps> = React.forwardRef<HTMLInputElement, TextboxProps>(
+	(
+		{
+			variant = 'primary',
+			type = 'text',
+			className,
+			size = 'normal',
+			...rest
+		},
+		ref
+	) => {
+		return (
+			<input
+				type={type}
+				className={inputVariants({ variant, size, className })}
+				ref={ref}
+				{...rest}
+			/>
+		)
+	}
+)	
 
 export { Input }
