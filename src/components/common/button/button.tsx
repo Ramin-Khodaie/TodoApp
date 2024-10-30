@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react'
 import { ButtonProps } from './button.types'
 import { cn } from 'lib/utils'

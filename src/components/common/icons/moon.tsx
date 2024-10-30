@@ -16,4 +16,4 @@ const Moon = (props: SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 )
-export default Moon
+export {Moon}

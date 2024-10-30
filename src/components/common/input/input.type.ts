@@ -1,4 +1,4 @@
-import { ComponentBase } from 'components/types/component-base'
+import { ComponentBase } from 'components/common/types/component-base'
 import { InputHTMLAttributes } from 'react'
 
 type TextboxType = 'text' | 'number' | 'email' | 'password'

@@ -16,4 +16,4 @@ const Plus = (props: SVGProps<SVGSVGElement>) => (
 		/>
 	</svg>
 )
-export default Plus
+export {Plus}

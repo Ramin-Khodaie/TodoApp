@@ -1,8 +1,7 @@
-import { Button } from 'components/button/button'
-import { Container } from 'components/container'
-import Moon from 'components/icons/moon'
-import Plus from 'components/icons/plus'
-import { Input } from 'components/input'
+import { Button } from 'components/common/button/button'
+import { Container } from 'components/common/container'
+import { Moon, Plus } from 'components/common/icons'
+import { Input } from 'components/common/input'
 
 function App() {
 	return (
@@ -38,7 +37,7 @@ function App() {
 						size='normal'
 						shape='square'
 						iconOnly
-						className=' lg:hidden'
+						className='lg:hidden'
 					>
 						<Moon />
 					</Button>
