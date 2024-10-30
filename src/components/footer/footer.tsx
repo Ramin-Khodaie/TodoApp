@@ -1,6 +1,6 @@
 import { AddTodoModal } from 'components/add-todo-modal/add-todo-modal'
 import { Button } from 'components/common/button'
-import { Moon, Plus } from 'components/common/icons'
+import { Moon } from 'components/common/icons'
 
 const Footer = () => {
 	return (
