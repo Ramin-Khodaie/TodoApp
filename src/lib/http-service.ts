@@ -1,3 +1,5 @@
+const token = import.meta.env.VITE_TODOIST_TOKEN;
+
 import axios, {
 	AxiosRequestConfig,
 	AxiosRequestHeaders,
@@ -8,7 +10,8 @@ import { API_URL } from 'config'
 const httpService = axios.create({
 	baseURL: API_URL,
 	headers: {
-		'Content-Type': 'application/json'
+		'Content-Type': 'application/json',
+		Authorization: `Bearer ${token}`
 	}
 })
 
