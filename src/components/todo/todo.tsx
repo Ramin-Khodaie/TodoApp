@@ -2,7 +2,7 @@ import  { FC } from 'react'
 import { Todo } from 'types/todo.interface'
 
 type Props = Todo
-const Todo: FC<Props> = ({ title, description, date, status }) => {
+const TodoItem: FC<Props> = ({ title, description, date, status }) => {
 	return (
 		<div>
 			<div>
@@ -10,9 +10,20 @@ const Todo: FC<Props> = ({ title, description, date, status }) => {
 				<div>
 					<p>{description}</p>
 				</div>
-			</div>
+      </div>
+      {status === 'active' && (
+        <div>
+          <p>Status: Active</p>
+        </div>
+      )}
+      {status === 'completed' && (
+        <div>
+          <p>Status: Completed</p>
+        </div>
+      )}
+      <p>Date: {date}</p>
 		</div>
 	)
 }
 
-export { Todo }
+export { TodoItem }

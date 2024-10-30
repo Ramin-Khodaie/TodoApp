@@ -1,4 +1,4 @@
-import { Todo } from 'components/todo'
+import { TodoItem } from 'components/todo'
 import { useTodoStore } from 'store/todo.store'
 
 const TodoList = () => {
@@ -7,7 +7,7 @@ const TodoList = () => {
 	return (
 		<div>
 			{todos.map(todo => (
-				<Todo {...todo} />
+				<TodoItem {...todo} />
 			))}
 		</div>
 	)

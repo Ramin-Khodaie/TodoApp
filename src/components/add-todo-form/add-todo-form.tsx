@@ -12,7 +12,7 @@ type Props = {
 	onClose: () => void
 }
 const AddTodoForm: FC<Props> = ({ onClose }) => {
-	const { control, handleSubmit, reset, clearErrors } = useForm<Todo>({
+	const { control, handleSubmit, reset } = useForm<Todo>({
 		resolver: zodResolver(todoSchema)
 	})
 	const { addTodo } = useTodoStore(state => state)
