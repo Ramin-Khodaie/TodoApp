@@ -1,24 +1,38 @@
 import { Button } from 'components/common/button'
 import { Input } from 'components/common/input'
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { Todo } from 'types/todo.interface'
 import { todoSchema } from './todo-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTodoStore } from 'store/todo.store'
+import { v4 as uuidv4 } from 'uuid'
 
 type Props = {
 	onClose: () => void
 }
 const AddTodoForm: FC<Props> = ({ onClose }) => {
-	const { control, handleSubmit, reset } = useForm<Todo>({
+	const { control, handleSubmit, reset, clearErrors } = useForm<Todo>({
 		resolver: zodResolver(todoSchema)
 	})
+	const { addTodo } = useTodoStore(state => state)
 
 	const onSubmit = (data: Todo) => {
-		console.log({ data })
+		const todoItem: Todo = {
+			...data,
+			id: uuidv4(),
+			status: 'active'
+		}
+		addTodo(todoItem)
 		reset()
 		onClose()
 	}
+
+	useEffect(() => {
+		return () => {
+			reset()
+		}
+	}, [reset])
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>

@@ -1,4 +1,4 @@
-import { AddTodoModal } from 'components/add-todo-modal/add-todo-modal'
+import { AddTodoModal } from 'components/add-todo-modal'
 import { Button } from 'components/common/button'
 import { Moon } from 'components/common/icons'
 

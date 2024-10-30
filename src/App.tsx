@@ -1,6 +1,6 @@
 import { Container } from 'components/common/container'
-import { Footer } from 'components/footer/footer'
-import { TodoFilter } from 'components/todo-filter/todo-filter'
+import { Footer } from 'components/footer'
+import { TodoFilter } from 'components/todo-filter'
 
 function App() {
 	return (

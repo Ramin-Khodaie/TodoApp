@@ -27,9 +27,19 @@ const AddTodoModal: FC<Props> = () => {
 					className='fixed inset-0 bg-black opacity-50'
 					onClick={() => setOpen(false)}
 				/>
-				<div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-full z-10 transform transition-transform duration-300 ${isOpen ? 'scale-100' : 'scale-95'}">
-					<h2 className='text-xl font-semibold mb-4 text-center'>Add Todo</h2>
-					<AddTodoForm onClose={() => setOpen(false)} />
+				<div
+					className={`bg-white rounded-lg shadow-lg p-6 max-w-sm w-full z-10 transform transition-transform duration-300 ${
+						open ? 'scale-100' : 'scale-95'
+					}`}
+				>
+					{open && (
+						<>
+							<h2 className='text-xl font-semibold mb-4 text-center'>
+								Add Todo
+							</h2>
+							<AddTodoForm onClose={() => setOpen(false)} />
+						</>
+					)}
 				</div>
 			</div>
 		</Fragment>
