@@ -1,45 +1,41 @@
 import { Button } from 'components/common/button'
 import { Input } from 'components/common/input'
-import { FC, useEffect } from 'react'
-import { useForm, Controller } from 'react-hook-form'
-import { Todo } from 'types/todo.interface'
-import { todoSchema } from './todo-schema'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { FC } from 'react'
+import { Controller, useForm } from 'react-hook-form'
 import { useTodoStore } from 'store/todo.store'
-import { v4 as uuidv4 } from 'uuid'
+import { Todo } from 'types/todo.interface'
+import { editSchema } from './edit-todo-schema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 type Props = {
 	onClose: () => void
+	todoId: string
 }
-const AddTodoForm: FC<Props> = ({ onClose }) => {
+const EditTodoForm: FC<Props> = ({ onClose, todoId }) => {
 	const { control, handleSubmit, reset } = useForm<Todo>({
-		resolver: zodResolver(todoSchema)
+		resolver: zodResolver(editSchema)
 	})
-	const { addTodo } = useTodoStore(state => state)
+	const { todos, updateTodo } = useTodoStore(state => state)
+
+	const todo = todos.find(t => t.id === todoId)
 
 	const onSubmit = (data: Todo) => {
-		const todoItem: Todo = {
-			...data,
-			id: uuidv4(),
-			status: 'Incompleted'
-		}
-		addTodo(todoItem)
+		const editedTodo: Todo = {
+			...todo,
+			title: data.title,
+			description: data.description
+		} as Todo
+
+		updateTodo(todoId, editedTodo)
 		reset()
 		onClose()
 	}
-
-	useEffect(() => {
-		return () => {
-			reset()
-		}
-	}, [reset])
-
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-3'>
 			<Controller
 				name='title'
 				control={control}
-				defaultValue=''
+				defaultValue={todo?.title}
 				render={({ field, fieldState: { error } }) => (
 					<>
 						<Input
@@ -55,7 +51,7 @@ const AddTodoForm: FC<Props> = ({ onClose }) => {
 			<Controller
 				name='description'
 				control={control}
-				defaultValue=''
+				defaultValue={todo?.description}
 				render={({ field, fieldState: { error } }) => (
 					<>
 						<Input
@@ -68,22 +64,12 @@ const AddTodoForm: FC<Props> = ({ onClose }) => {
 					</>
 				)}
 			/>
-			<Controller
-				name='date'
-				control={control}
-				defaultValue=''
-				render={({ field, fieldState: { error } }) => (
-					<>
-						<Input type='date' className='w-full' {...field} />
-						{error && <p className='text-red-500'>{error.message}</p>}
-					</>
-				)}
-			/>
+
 			<Button variant='primary' type='submit'>
-				Add Todo
+				Edit
 			</Button>
 		</form>
 	)
 }
 
-export { AddTodoForm }
+export { EditTodoForm }

@@ -1,7 +1,9 @@
+
+export type TodoStatus = 'All' | 'Incompleted' | 'Completed'
 export interface Todo {
-	id: string,
+	id: string
 	title: string
 	description: string
 	date: string
-	status: 'active' | 'completed'
+	status: TodoStatus
 }

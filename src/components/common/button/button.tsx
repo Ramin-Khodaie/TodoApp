@@ -7,7 +7,7 @@ import { tv } from 'tailwind-variants'
 export const buttonVariants = tv({
 	variants: {
 		variant: {
-			primary: 'bg-primary text-base-white',
+			primary: 'bg-primary text-base-white hover:bg-secondary',
 			secondary: 'bg-secondary text-base-white',
 			accent: 'bg-accent text-base-white',
 			neutral: 'bg-neutral text-base-white',

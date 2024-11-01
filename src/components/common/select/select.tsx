@@ -4,6 +4,7 @@ import { tv } from 'tailwind-variants'
 import { Button } from '../button'
 import { CheveronUp } from '../icons'
 import { cn } from 'lib/utils'
+import { useTodoStore } from 'store/todo.store'
 
 const buttonVariants = tv({
 	base: 'rounded-md py-2 px-4 outline-none w-full flex items-center justify-between min-w-48',
@@ -36,10 +37,11 @@ const optionStyles = tv({
 const Select: FC<SelectProps> = ({
 	variant = 'primary',
 	options,
-	value,
 	onChange
 }) => {
+	const { filterStatus} = useTodoStore(state => state)
 	const [isOpen, setIsOpen] = useState(false)
+	const [status, setStatus] = useState(filterStatus)
 
 	const selectRef = useRef<HTMLDivElement>(null)
 
@@ -74,7 +76,7 @@ const Select: FC<SelectProps> = ({
 				className={buttonVariants({ variant })}
 				onClick={() => setIsOpen(!isOpen)}
 			>
-				{value ?? 'All'}
+				{status}
 				<CheveronUp
 					width={16}
 					height={16}
@@ -93,7 +95,10 @@ const Select: FC<SelectProps> = ({
 					<div
 						key={option.value}
 						className={optionStyles()}
-						onClick={() => handleSelect(option.value)}
+						onClick={() => {
+							handleSelect(option.value)
+							setStatus(option.label)
+						}}
 					>
 						{option.label}
 					</div>

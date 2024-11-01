@@ -10,13 +10,13 @@ const CheveronUp = (props: SVGProps<SVGSVGElement>) => (
 	>
 		<path
 			d='M4.63077 1L8 4'
-			stroke='#F7F7F7'
+			stroke={props.color ||'#F7F7F7'}
 			strokeLinecap='round'
 			strokeLinejoin='round'
 		/>
 		<path
 			d='M1.26154 4L4.63077 1'
-			stroke='#F7F7F7'
+			stroke={props.color ||'#F7F7F7'}
 			strokeLinecap='round'
 			strokeLinejoin='round'
 		/>

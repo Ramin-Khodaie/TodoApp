@@ -4,6 +4,7 @@ import { Plus } from 'components/common/icons'
 import { FC, Fragment, useState } from 'react'
 
 type Props = {}
+
 const AddTodoModal: FC<Props> = () => {
 	const [open, setOpen] = useState(false)
 	return (
@@ -19,7 +20,7 @@ const AddTodoModal: FC<Props> = () => {
 				<Plus />
 			</Button>
 			<div
-				className={`fixed inset-0 z-50 flex items-center justify-center px-3 ${
+				className={`fixed inset-0 z-50 flex items-center justify-center px-3  ${
 					open ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				} transition-opacity duration-300`}
 			>
@@ -28,13 +29,13 @@ const AddTodoModal: FC<Props> = () => {
 					onClick={() => setOpen(false)}
 				/>
 				<div
-					className={`bg-white rounded-lg shadow-lg p-6 max-w-sm w-full z-10 transform transition-transform duration-300 ${
+					className={`bg-white dark:bg-base-black rounded-lg shadow-lg p-6 max-w-sm w-full z-10 transform transition-transform duration-300 ${
 						open ? 'scale-100' : 'scale-95'
 					}`}
 				>
 					{open && (
 						<>
-							<h2 className='text-xl font-semibold mb-4 text-center'>
+							<h2 className='text-xl dark:text-base-white font-semibold mb-4 text-center'>
 								Add Todo
 							</h2>
 							<AddTodoForm onClose={() => setOpen(false)} />
