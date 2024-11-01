@@ -1,50 +1,58 @@
-# React + TypeScript + Vite
+import { CodeBlock } from './components/CodeBlock'
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Task Manager App
 
-Currently, two official plugins are available:
+A Task Manager app built with **React**, **Tailwind CSS**, **Zustand** for state management, and **React Hook Form** for form handling. The app provides a smooth user experience with **CRUD** functionality and **task filtering** based on completion status. The **dark mode** toggle enhances user comfort in different lighting environments.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Task Management (CRUD):** Add, edit, delete, and view tasks with ease.
+- **Status Filtering:** Filter tasks based on their status – view all, active, or completed tasks.
+- **Dark Mode:** Toggle between light and dark themes for an improved user experience.
+- **Responsive Design:** Built with Tailwind CSS to ensure the app is fully responsive and accessible on various screen sizes.
+- **Form Validation:** Forms use React Hook Form for smooth validation and error handling.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Tech Stack
 
-- Configure the top-level `parserOptions` property like this:
+- **React**: A JavaScript library for building user interfaces.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
+- **Zustand**: Lightweight state management for storing tasks and filter states.
+- **React Hook Form**: Easy-to-use library for managing form state and validation.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Installation
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+1. **Clone the repository**
+   <CodeBlock language="bash">
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
+   </CodeBlock>
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Install dependencies**
+   <CodeBlock language="bash">
+   npm install
+   </CodeBlock>
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. **Run the app**
+   <CodeBlock language="bash">
+   npm start
+   </CodeBlock>
+
+## Usage
+
+- **Adding Tasks**: Use the form to add a new task.
+- **Editing Tasks**: Edit existing tasks to update their details.
+- **Deleting Tasks**: Remove tasks that are no longer needed.
+- **Filtering**: Filter tasks to view only completed, active, or all tasks.
+- **Dark Mode**: Switch between light and dark themes using the toggle in the settings or header.
+
+## Folder Structure
+
+- **/src**: Contains all the main code.
+  - **/components**: UI components for various sections of the app.
+  - **/config**: Project global configurations.
+  - **/hooks**: Custom hooks, including those related to React Hook Form.
+  - **/lib**: Third-party libraries.
+  - **/services**: API services.
+  - **/store**: Zustand store setup and configuration.
+  - **/types**: Type definitions.
+|
