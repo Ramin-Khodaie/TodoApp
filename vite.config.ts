@@ -10,7 +10,7 @@ export default defineConfig({
 		tsconfigPaths(),
 		VitePWA({
 			registerType: 'autoUpdate',
-			includeAssets: ['favicon.ico', 'logo.png'],
+			includeAssets: ['logo.ico', 'logo.png'],
 			manifest: {
 				name: 'Todo App',
 				short_name: 'Todo App',
