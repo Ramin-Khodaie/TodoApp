@@ -3,8 +3,9 @@ import { Moon } from 'components/common/icons'
 import { Input } from 'components/common/input'
 import { Select } from 'components/common/select/select'
 import { useDarkMode } from 'hooks/useDarkMode'
-import { useTodoStore } from 'store/todo.store'
 import { TodoStatus } from 'types/todo.interface'
+import { useDispatch } from 'react-redux'
+import { setFilterStatus, setSearchText } from 'store/slices'
 
 const options: { label: TodoStatus; value: string }[] = [
 	{
@@ -22,8 +23,9 @@ const options: { label: TodoStatus; value: string }[] = [
 ]
 
 const TodoFilter = () => {
-	const { setFilterStatus, setSearchText } = useTodoStore(state => state)
-	const {toggleDarkMode } = useDarkMode();
+	const dispatch = useDispatch()
+
+	const { toggleDarkMode } = useDarkMode()
 
 	return (
 		<div className='flex flex-col gap-3 lg:flex-row lg:justify-between w-full'>
@@ -32,14 +34,14 @@ const TodoFilter = () => {
 				variant='primary'
 				size='normal'
 				className='lg:w-full'
-				onChange={e => setSearchText(e.target.value)}
+				onChange={e => dispatch(setSearchText(e.target.value))}
 			/>
 			<div className='lg:flex lg:gap-2 lg:items-center '>
 				<Select
 					options={options}
 					value={status}
 					onChange={value => {
-						setFilterStatus(value as TodoStatus)
+						dispatch(setFilterStatus(value as TodoStatus))
 					}}
 				/>
 				<Button

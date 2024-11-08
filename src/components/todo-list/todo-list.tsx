@@ -1,10 +1,11 @@
 import { TodoItem } from 'components/todo'
 import { useFilter } from 'hooks/useFilter'
-import { useTodoStore } from 'store/todo.store'
+import { useSelector } from 'react-redux'
+import { RootState } from 'store'
 
 const TodoList = () => {
 	const { filteredTodos } = useFilter()
-	const { filterStatus } = useTodoStore(state => state)
+	const filterStatus = useSelector((state: RootState) => state.filterStatus)
 	return (
 		<div className='w-full'>
 			{!filteredTodos.length && (

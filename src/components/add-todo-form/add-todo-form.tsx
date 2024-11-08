@@ -5,8 +5,9 @@ import { useForm, Controller } from 'react-hook-form'
 import { Todo } from 'types/todo.interface'
 import { todoSchema } from './todo-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTodoStore } from 'store/todo.store'
 import { v4 as uuidv4 } from 'uuid'
+import { useDispatch } from 'react-redux'
+import { addTodo } from 'store/slices'
 
 type Props = {
 	onClose: () => void
@@ -15,7 +16,7 @@ const AddTodoForm: FC<Props> = ({ onClose }) => {
 	const { control, handleSubmit, reset } = useForm<Todo>({
 		resolver: zodResolver(todoSchema)
 	})
-	const { addTodo } = useTodoStore(state => state)
+	const dispatch = useDispatch()
 
 	const onSubmit = (data: Todo) => {
 		const todoItem: Todo = {
@@ -23,7 +24,7 @@ const AddTodoForm: FC<Props> = ({ onClose }) => {
 			id: uuidv4(),
 			status: 'Incompleted'
 		}
-		addTodo(todoItem)
+		dispatch(addTodo(todoItem))
 		reset()
 		onClose()
 	}

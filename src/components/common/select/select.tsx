@@ -4,7 +4,8 @@ import { tv } from 'tailwind-variants'
 import { Button } from '../button'
 import { CheveronUp } from '../icons'
 import { cn } from 'lib/utils'
-import { useTodoStore } from 'store/todo.store'
+import { RootState } from 'store'
+import { useSelector } from 'react-redux'
 
 const buttonVariants = tv({
 	base: 'rounded-md py-2 px-4 outline-none w-full flex items-center justify-between min-w-48',
@@ -39,7 +40,7 @@ const Select: FC<SelectProps> = ({
 	options,
 	onChange
 }) => {
-	const { filterStatus} = useTodoStore(state => state)
+	const { filterStatus } = useSelector((state: RootState) => state)
 	const [isOpen, setIsOpen] = useState(false)
 	const [status, setStatus] = useState(filterStatus)
 

@@ -2,10 +2,11 @@ import Edit from 'components/common/icons/edit'
 import Trash from 'components/common/icons/trash'
 import { Input } from 'components/common/input'
 import { FC, useState } from 'react'
-import { useTodoStore } from 'store/todo.store'
 import { Todo } from 'types/todo.interface'
 import { useQueryState } from 'nuqs'
 import { CheveronUp } from 'components/common/icons'
+import { useDispatch } from 'react-redux'
+import { changeStatus, deleteTodo } from 'store/slices'
 
 type Props = Todo
 
@@ -13,7 +14,7 @@ const TodoItem: FC<Props> = ({ id, title, description, date, status }) => {
 	const [, setTodoId] = useQueryState('id')
 	const [expand, setExpand] = useState(false)
 
-	const { deleteTodo, changeStatus } = useTodoStore(state => state)
+	const dispatch = useDispatch()
 
 	return (
 		<div className='w-full p-3 border-b border-gray-200 flex flex-col'>
@@ -23,7 +24,7 @@ const TodoItem: FC<Props> = ({ id, title, description, date, status }) => {
 						type='checkbox'
 						checked={status === 'Completed'}
 						className='mr-2'
-						onChange={() => changeStatus(id)}
+						onChange={() => dispatch(changeStatus(id))}
 					/>
 					<h3
 						className={`dark:text-base-white text-base-black ${
@@ -55,7 +56,10 @@ const TodoItem: FC<Props> = ({ id, title, description, date, status }) => {
 					>
 						<Edit className='group group-hover:stroke-primary' />
 					</span>
-					<span className=' cursor-pointer' onClick={() => deleteTodo(id)}>
+					<span
+						className=' cursor-pointer'
+						onClick={() => dispatch(deleteTodo(id))}
+					>
 						<Trash className='group group-hover:stroke-red-600 ' />
 					</span>
 				</div>

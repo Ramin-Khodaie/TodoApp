@@ -2,10 +2,12 @@ import { Button } from 'components/common/button'
 import { Input } from 'components/common/input'
 import { FC } from 'react'
 import { Controller, useForm } from 'react-hook-form'
-import { useTodoStore } from 'store/todo.store'
 import { Todo } from 'types/todo.interface'
 import { editSchema } from './edit-todo-schema'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'store'
+import { updateTodo } from 'store/slices'
 
 type Props = {
 	onClose: () => void
@@ -15,7 +17,8 @@ const EditTodoForm: FC<Props> = ({ onClose, todoId }) => {
 	const { control, handleSubmit, reset } = useForm<Todo>({
 		resolver: zodResolver(editSchema)
 	})
-	const { todos, updateTodo } = useTodoStore(state => state)
+	const dispatch = useDispatch()
+	const { todos } = useSelector((state: RootState) => state)
 
 	const todo = todos.find(t => t.id === todoId)
 
@@ -26,7 +29,7 @@ const EditTodoForm: FC<Props> = ({ onClose, todoId }) => {
 			description: data.description
 		} as Todo
 
-		updateTodo(todoId, editedTodo)
+		dispatch(updateTodo({ id: todoId, todo: editedTodo }))
 		reset()
 		onClose()
 	}

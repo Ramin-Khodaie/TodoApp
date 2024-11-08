@@ -1,10 +1,14 @@
 import { useEffect, useState } from 'react'
-import { useTodoStore } from 'store/todo.store'
 import { Todo } from 'types/todo.interface'
+import { useSelector } from 'react-redux'
+import { RootState } from 'store'
 
 const useFilter = () => {
 	const [filteredTodos, setFilteredTodos] = useState<Todo[]>([])
-	const { filterStatus, todos, searchText } = useTodoStore(state => state)
+	// const { filterStatus, todos, searchText } = useTodoStore(state => state)
+	const { filterStatus, todos, searchText } = useSelector(
+		(state: RootState) => state
+	)
 
 	useEffect(() => {
 		if (filterStatus === 'All') {
