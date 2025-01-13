@@ -1,5 +1,3 @@
-import { CodeBlock } from './components/CodeBlock'
-
 # Task Manager App
 
 A Task Manager app built with **React**, **Tailwind CSS**, **Zustand** for state management, and **React Hook Form** for form handling. The app provides a smooth user experience with **CRUD** functionality and **task filtering** based on completion status. The **dark mode** toggle enhances user comfort in different lighting environments.
